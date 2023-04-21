@@ -1,10 +1,11 @@
-import Sidebar from "./Sidebar";
+import { useState } from "react";
+import clsx from "clsx";
+import { AiFillCamera, AiFillCompass, AiFillFacebook } from "react-icons/ai";
+
 import { Button } from "../Button";
 import { HeaderContainer } from "../Header";
-import { useState } from "react";
+import Sidebar from "./Sidebar";
 import SidebarLink from "./SidebarLink";
-import { AiFillCamera, AiFillFacebook, AiFillCompass } from "react-icons/ai";
-import clsx from "clsx";
 
 export const Default = () => {
   const [open, setOpen] = useState(false);
@@ -15,25 +16,25 @@ export const Default = () => {
       <Sidebar setOpen={setOpen} open={open}>
         <SidebarLink
           icon={<AiFillCamera />}
-          to="https://www.google.com/"
+          href="https://www.google.com/"
           onClick={close}
-          target="_blank"
+          external
         >
           Dashboard
         </SidebarLink>
         <SidebarLink
           icon={<AiFillFacebook />}
-          to="https://www.google.com/"
+          href="https://www.google.com/"
           onClick={close}
-          target="_blank"
+          external
         >
           Products
         </SidebarLink>
         <SidebarLink
           icon={<AiFillCompass />}
-          to="https://www.google.com/"
+          href="https://www.google.com/"
           onClick={close}
-          target="_blank"
+          external
         >
           Cart
         </SidebarLink>

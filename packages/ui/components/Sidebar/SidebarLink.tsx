@@ -1,12 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { Link } from "../Link";
-import type { LinkProps } from "../Link";
+
+import { Link, type LinkProps } from "../Link";
 
 export interface SidebarLinkProps extends LinkProps {
   onClick?: () => void;
   children: string;
-  isActive: boolean;
+  isActive?: boolean;
   icon: React.ReactNode;
 }
 
@@ -14,7 +14,7 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({
   onClick = () => {},
   children,
   icon,
-  isActive,
+  isActive = false,
   ...restLinkProps
 }) => {
   return (
