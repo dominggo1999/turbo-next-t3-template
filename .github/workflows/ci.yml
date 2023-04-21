@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        job: [build, nextjs-e2e-test, ui-components-test, lint]
+        job: [build, nextjs-e2e-test, ui-components-test, lint, type-check]
 
     steps:
       - name: Checkout code
@@ -32,9 +32,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Generate Prisma Client
+        run: pnpm turbo db:generate
+
       - name: Run job ${{ matrix.job }}
         if: matrix.job == 'lint'
         run: pnpm lint
+        env:
+          SKIP_ENV_VALIDATION: true
+
+      - name: Run job ${{ matrix.job }}
+        if: matrix.job == 'type-check'
+        run: pnpm type-check
+        env:
+          SKIP_ENV_VALIDATION: true
 
       - name: Run job ${{ matrix.job }}
         if: matrix.job == 'build'
